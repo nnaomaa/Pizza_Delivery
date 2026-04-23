@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Delivery Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <div class="container">
+      <header>
+        <h1>🍕 Pizza Delivery Tracker</h1>
+        <p>
+          Order your pizza and track it in real-time from preparation to
+          delivery
+        </p>
+      </header>
+
+      <div class="order-section" id="orderSection">
+        <h2 class="section-title">Create Your Order</h2>
+
+        <div class="pizza-form">
+          <div>
+            <div class="form-group">
+              <label for="pizzaSize">Pizza Size</label>
+              <select id="pizzaSize" onchange="updateOrderSummary()">
+                <option value="Small">Small (10")</option>
+                <option value="Medium" selected>Medium (12")</option>
+                <option value="Large">Large (14")</option>
+                <option value="Extra Large">Extra Large (16")</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="crustType">Crust Type</label>
+              <select id="crustType" onchange="updateOrderSummary()">
+                <option value="Thin">Thin Crust</option>
+                <option value="Regular" selected>Regular Crust</option>
+                <option value="Thick">Thick Crust</option>
+                <option value="Stuffed">Stuffed Crust</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <div class="form-group">
+              <label for="toppings">Toppings (Multiple)</label>
+              <select id="toppings" multiple onchange="updateOrderSummary()">
+                <option value="Pepperoni">Pepperoni</option>
+                <option value="Mushrooms">Mushrooms</option>
+                <option value="Onions">Onions</option>
+                <option value="Sausage">Sausage</option>
+                <option value="Bacon">Bacon</option>
+                <option value="Extra_cheese">Extra Cheese</option>
+                <option value="Peppers">Bell Peppers</option>
+                <option value="Olives">Olives</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" placeholder="John Doe" />
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" placeholder="(555) 555-5555" />
+            </div>
+
+            <div class="form-group">
+              <label for="address">Delivery Address</label>
+              <textarea
+                id="address"
+                rows="3"
+                placeholder="123 Main St, Anytown, USA"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div id="orderSummary" class="order-summary">
+        </div>
+
+        <div class="button-container">
+          <button id="placeOrderBtn" onclick="startDeliveryProcess()">Place Order</button>
+        </div>
+      </div>
+
+      <div class="tracker-section" id="trackerSection">
+        <h2 class="section-title">Track Your Order</h2>
+
+        <div class="progress-bar-container">
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+
+          <div class="progress-steps">
+            <div class="progress-step active" id="step1">
+              <span class="step-label">Order Received</span>
+            </div>
+            <div class="progress-step" id="step2">
+              <span class="step-label">Preparing</span>
+            </div>
+            <div class="progress-step" id="step3">
+              
+              <span class="step-label">In the Oven</span>
+            </div>
+            <div class="progress-step" id="step4">
+              
+              <span class="step-label">Quality Check</span>
+            </div>
+            <div class="progress-step" id="step5">
+              
+              <span class="step-label">Out for Delivery</span>
+            </div>
+            <div class="progress-step" id="step6">
+              
+              <span class="step-label">Delivered</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="delivery-info">
+          <div class="delivery-detail">
+            <div class="detail-label">Estimated Time</div>
+            <div class="detail-value" id="estimatedTime">15:00</div>
+          </div>
+
+          <div class="delivery-detail">
+            <div class="detail-label">Current Status</div>
+            <div class="detail-value" id="currentStatus">Order Received</div>
+          </div>
+
+          <div class="delivery-detail">
+            <div class="detail-label">Order Number</div>
+            <div class="detail-value" id="orderNumber">#12345</div>
+          </div>
+        </div>
+
+        <div class="status-updates">
+          <div class="status-title">Order Updates</div>
+          <div class="update-list" id="updateList">
+            <!-- Updates will be added here -->
+          </div>
+        </div>
+
+        <div class="button-container">
+          <button id="newOrderBtn" onclick="resetProcess()">Place Another Order</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="notification" id="notification">
+      Your order has been placed!
+    </div>
+</body>
+</html>
